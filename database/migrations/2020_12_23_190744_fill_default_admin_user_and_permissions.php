@@ -41,7 +41,7 @@ class FillDefaultAdminUserAndPermissions extends Migration
     /**
      * @var string
      */
-    protected $password = 'JNcb0F7TQD';
+    protected $password = '123456789';
 
     /**
      * FillDefaultAdminUserAndPermissions constructor.
@@ -104,9 +104,9 @@ class FillDefaultAdminUserAndPermissions extends Migration
         //Add new users
         $this->users = [
             [
-                'first_name' => 'Administrator',
-                'last_name' => 'Administrator',
-                'email' => 'administrator@brackets.sk',
+                'first_name' => 'Abu',
+                'last_name' => 'Sufyan',
+                'email' => 'muhammad.yaqoob180@gmail.com',
                 'password' => Hash::make($this->password),
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
