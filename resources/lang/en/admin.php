@@ -23,10 +23,10 @@ return [
             'activated' => 'Activated',
             'forbidden' => 'Forbidden',
             'language' => 'Language',
-                
+
             //Belongs to many relations
             'roles' => 'Roles',
-                
+
         ],
     ],
 
@@ -48,12 +48,13 @@ return [
             'city' => 'City',
             'state' => 'State',
             'country' => 'Country',
+            'export' => 'Export',
             'post_code' => 'Post code',
             'phone' => 'Phone',
             'image' => 'Image',
             'status' => 'Status',
             'email' => 'Email',
-            
+
         ],
     ],
 

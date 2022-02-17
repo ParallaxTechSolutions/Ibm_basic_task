@@ -14,7 +14,8 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.user.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/users/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.user.actions.create') }}</a>
+                        <a class="btn btn-primary btn-spinner btn-sm " href="{{ url('admin/users/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.user.actions.create') }}</a>
+                        <a class="btn btn-warning btn-spinner btn-sm " href="{{ url('admin/users/export') }}" role="button"><i class="fa fa-globe"></i>&nbsp; {{ trans('admin.user.actions.export') }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -30,7 +31,7 @@
                                     </div>
                                     <div class="col-sm-auto form-group ">
                                         <select class="form-control" v-model="pagination.state.per_page">
-                                            
+
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="100">100</option>
@@ -96,7 +97,7 @@
                                         <td>@{{ item.phone }}</td>
                                         <td>@{{ item.status }}</td>
                                         <td>@{{ item.email }}</td>
-                                        
+
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">

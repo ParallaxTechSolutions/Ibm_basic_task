@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\DestroyUser;
 use App\Http\Requests\Admin\User\IndexUser;
 use App\Http\Requests\Admin\User\StoreUser;
 use App\Http\Requests\Admin\User\UpdateUser;
+use App\Jobs\ExportUserData;
 use App\Models\User;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -184,5 +185,16 @@ class UsersController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+
+
+    public function export()
+    {
+        dispatch(new ExportUserData());
+        if ($request->ajax()) {
+            return response(['message' => 'Data send in job kindly check directory']);
+        }
+        return redirect()->back();
     }
 }
