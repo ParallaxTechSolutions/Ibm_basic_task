@@ -2,42 +2,39 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'gender',
+        'street',
+        'city',
+        'state',
+        'country',
+        'post_code',
+        'phone',
+        'image',
+        'status',
         'email',
-        'password',
+    
     ];
+    
+    
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    
+    ];
+    
+    protected $appends = ['resource_url'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    /* ************************ ACCESSOR ************************* */
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getResourceUrlAttribute()
+    {
+        return url('/admin/users/'.$this->getKey());
+    }
 }

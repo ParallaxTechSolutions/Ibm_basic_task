@@ -30,5 +30,32 @@ return [
         ],
     ],
 
+    'user' => [
+        'title' => 'Users',
+
+        'actions' => [
+            'index' => 'Users',
+            'create' => 'New User',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'first_name' => 'First name',
+            'last_name' => 'Last name',
+            'gender' => 'Gender',
+            'street' => 'Street',
+            'city' => 'City',
+            'state' => 'State',
+            'country' => 'Country',
+            'post_code' => 'Post code',
+            'phone' => 'Phone',
+            'image' => 'Image',
+            'status' => 'Status',
+            'email' => 'Email',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];
