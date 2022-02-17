@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\BulkDestroyUser;
 use App\Http\Requests\Admin\User\DestroyUser;
@@ -20,6 +21,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -34,7 +36,7 @@ class UsersController extends Controller
     {
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(User::class)->processRequestAndGet(
-            // pass the request with params
+        // pass the request with params
             $request,
 
             // set columns to query
@@ -192,9 +194,6 @@ class UsersController extends Controller
     public function export()
     {
         dispatch(new ExportUserData());
-        if ($request->ajax()) {
-            return response(['message' => 'Data send in job kindly check directory']);
-        }
-        return redirect()->back();
+        return redirect()->back()->with(['message' => 'Data send in Backend kindly check User directory']);
     }
 }

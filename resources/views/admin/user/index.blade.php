@@ -15,7 +15,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.user.actions.index') }}
                         <a class="btn btn-primary btn-spinner btn-sm " href="{{ url('admin/users/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.user.actions.create') }}</a>
-                        <a class="btn btn-warning btn-spinner btn-sm " href="{{ url('admin/users/export') }}" role="button"><i class="fa fa-globe"></i>&nbsp; {{ trans('admin.user.actions.export') }}</a>
+                        <a class="btn btn-warning btn-spinner btn-sm " href="{{ url('admin/users/export') }}" role="button"><i class="fa fa-globe"></i>&nbsp; {{ trans('admin.user.columns.export') }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -42,73 +42,61 @@
 
                             <table class="table table-hover table-listing">
                                 <thead>
-                                    <tr>
-                                        <th class="bulk-checkbox">
-                                            <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
-                                            <label class="form-check-label" for="enabled">
-                                                #
-                                            </label>
-                                        </th>
+                                <tr>
+                                    <th class="bulk-checkbox">
+                                        <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
+                                        <label class="form-check-label" for="enabled">
+                                            #
+                                        </label>
+                                    </th>
 
-                                        <th is='sortable' :column="'id'">{{ trans('admin.user.columns.id') }}</th>
-                                        <th is='sortable' :column="'first_name'">{{ trans('admin.user.columns.first_name') }}</th>
-                                        <th is='sortable' :column="'last_name'">{{ trans('admin.user.columns.last_name') }}</th>
-                                        <th is='sortable' :column="'gender'">{{ trans('admin.user.columns.gender') }}</th>
-                                        <th is='sortable' :column="'street'">{{ trans('admin.user.columns.street') }}</th>
-                                        <th is='sortable' :column="'city'">{{ trans('admin.user.columns.city') }}</th>
-                                        <th is='sortable' :column="'state'">{{ trans('admin.user.columns.state') }}</th>
-                                        <th is='sortable' :column="'country'">{{ trans('admin.user.columns.country') }}</th>
-                                        <th is='sortable' :column="'post_code'">{{ trans('admin.user.columns.post_code') }}</th>
-                                        <th is='sortable' :column="'phone'">{{ trans('admin.user.columns.phone') }}</th>
-                                        <th is='sortable' :column="'status'">{{ trans('admin.user.columns.status') }}</th>
-                                        <th is='sortable' :column="'email'">{{ trans('admin.user.columns.email') }}</th>
+                                    <th is='sortable' :column="'id'">{{ trans('admin.user.columns.id') }}</th>
+                                    <th is='sortable' :column="'first_name'">{{ trans('admin.user.columns.name') }}</th>
+                                    <th is='sortable' :column="'email'">{{ trans('admin.user.columns.email') }}</th>
+                                    <th is='sortable' :column="'phone'">{{ trans('admin.user.columns.phone') }}</th>
+                                    <th is='sortable' :column="'street'">{{ trans('admin.user.columns.address') }}</th>
+                                    <th is='sortable' :column="'gender'">{{ trans('admin.user.columns.gender') }}</th>
 
-                                        <th></th>
-                                    </tr>
-                                    <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
-                                        <td class="bg-bulk-info d-table-cell text-center" colspan="14">
+                                    <th></th>
+                                </tr>
+                                <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
+                                    <td class="bg-bulk-info d-table-cell text-center" colspan="14">
                                             <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/users')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
-                                                        href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
+                                                    href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
-                                            <span class="pull-right pr-2">
+                                        <span class="pull-right pr-2">
                                                 <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/users/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
                                             </span>
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
-                                        <td class="bulk-checkbox">
-                                            <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
-                                            <label class="form-check-label" :for="'enabled' + item.id">
-                                            </label>
-                                        </td>
+                                <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
+                                    <td class="bulk-checkbox">
+                                        <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
+                                        <label class="form-check-label" :for="'enabled' + item.id">
+                                        </label>
+                                    </td>
 
                                     <td>@{{ item.id }}</td>
-                                        <td>@{{ item.first_name }}</td>
-                                        <td>@{{ item.last_name }}</td>
-                                        <td>@{{ item.gender }}</td>
-                                        <td>@{{ item.street }}</td>
-                                        <td>@{{ item.city }}</td>
-                                        <td>@{{ item.state }}</td>
-                                        <td>@{{ item.country }}</td>
-                                        <td>@{{ item.post_code }}</td>
-                                        <td>@{{ item.phone }}</td>
-                                        <td>@{{ item.status }}</td>
-                                        <td>@{{ item.email }}</td>
+                                    <td>@{{ item.first_name }} &nbsp; @{{ item.last_name }}</td>
+                                    <td>@{{ item.email }}</td>
+                                    <td>@{{ item.phone }}</td>
+                                    <td>@{{ item.street }} , @{{ item.city }} , @{{ item.state }} , @{{ item.country }}</td>
+                                    <td>@{{ item.gender }}</td>
 
-                                        <td>
-                                            <div class="row no-gutters">
-                                                <div class="col-auto">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
-                                                </div>
-                                                <form class="col" @submit.prevent="deleteItem(item.resource_url)">
-                                                    <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
-                                                </form>
+                                    <td>
+                                        <div class="row no-gutters">
+                                            <div class="col-auto">
+                                                <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                             </div>
-                                        </td>
-                                    </tr>
+                                            <form class="col" @submit.prevent="deleteItem(item.resource_url)">
+                                                <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 

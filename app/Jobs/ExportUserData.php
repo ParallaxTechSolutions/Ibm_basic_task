@@ -15,24 +15,19 @@ class ExportUserData implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        //
+//        $this->exportExcel();
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
-        return Excel::download(new UsersExport, 'users.csv');
+        $this->exportExcel();
+    }
+
+    private function exportExcel()
+    {
+        return Excel::store(new UsersExport, 'user/users.csv');
     }
 
 }

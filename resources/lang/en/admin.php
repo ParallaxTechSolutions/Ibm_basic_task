@@ -48,6 +48,8 @@ return [
             'city' => 'City',
             'state' => 'State',
             'country' => 'Country',
+            'name' => 'Name',
+            'address' => 'Address',
             'export' => 'Export',
             'post_code' => 'Post code',
             'phone' => 'Phone',
