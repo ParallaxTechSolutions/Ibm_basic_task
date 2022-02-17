@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\User\IndexUser;
 use App\Http\Requests\Admin\User\StoreUser;
 use App\Http\Requests\Admin\User\UpdateUser;
 use App\Jobs\ExportUserData;
+use App\Jobs\ImportUserData;
 use App\Models\User;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -22,6 +23,8 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
+
 
 class UsersController extends Controller
 {
@@ -195,5 +198,17 @@ class UsersController extends Controller
     {
         dispatch(new ExportUserData());
         return redirect()->back()->with(['message' => 'Data send in Backend kindly check User directory']);
+    }
+
+    public function import()
+    {
+        $this->authorize('admin.user.create');
+
+        return view('admin.user.create');
+    }
+    public function importData(Request $request)
+    {
+        dispatch(new ImportUserData($request->country));
+        return redirect('admin/users/');
     }
 }

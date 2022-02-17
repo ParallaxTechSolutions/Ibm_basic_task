@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.user.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm " href="{{ url('admin/users/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.user.actions.create') }}</a>
+                        <a class="btn btn-primary btn-spinner btn-sm " href="{{ url('admin/users/import') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.user.actions.create') }}</a>
                         <a class="btn btn-warning btn-spinner btn-sm " href="{{ url('admin/users/export') }}" role="button"><i class="fa fa-globe"></i>&nbsp; {{ trans('admin.user.columns.export') }}</a>
                     </div>
                     <div class="card-body" v-cloak>

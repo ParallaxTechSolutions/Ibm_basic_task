@@ -51,7 +51,9 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'UsersController@index')->name('index');
             Route::get('/create',                                       'UsersController@create')->name('create');
             Route::post('/',                                            'UsersController@store')->name('store');
-            Route::get('/export',                                      'UsersController@export')->name('export');
+            Route::get('/export',                                       'UsersController@export')->name('export');
+            Route::get('/import',                                       'UsersController@import')->name('import');
+            Route::post('/importData',                                  'UsersController@importData')->name('importData');
             Route::get('/{user}/edit',                                  'UsersController@edit')->name('edit');
             Route::post('/bulk-destroy',                                'UsersController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{user}',                                      'UsersController@update')->name('update');
